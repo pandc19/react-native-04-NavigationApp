@@ -9,6 +9,8 @@ import {
 } from '@react-navigation/drawer';
 import {globalColors} from '../theme/theme';
 import {useWindowDimensions, View} from 'react-native';
+import {BottomTabNavigator} from './BottomTabsNavigator';
+import {Ionicon} from '../components/shared/Ionicon';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,8 +32,25 @@ export const SideMenuNavigator = () => {
           paddingHorizontal: 20,
         },
       }}>
-      <Drawer.Screen name="StackNavigator" component={StackNavigator} />
-      <Drawer.Screen name="Profile" component={ProfileScreen} />
+      {/* <Drawer.Screen name="StackNavigator" component={StackNavigator} /> */}
+      <Drawer.Screen
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicon name="bonfire-outline" color={color} />
+          ),
+        }}
+        name="Tabs"
+        component={BottomTabNavigator}
+      />
+      <Drawer.Screen
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicon name="person-circle-outline" color={color} />
+          ),
+        }}
+        name="Profile"
+        component={ProfileScreen}
+      />
     </Drawer.Navigator>
   );
 };
